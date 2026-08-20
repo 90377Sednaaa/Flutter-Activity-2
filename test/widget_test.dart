@@ -20,8 +20,10 @@ void main() {
     // Verify the section labels are displayed.
     expect(find.text('Row Main Axis Alignment'), findsOneWidget);
     expect(find.text('Row Cross Axis Alignment'), findsOneWidget);
+    expect(find.text('Column Main Axis Alignment'), findsOneWidget);
+    expect(find.text('Column Cross Axis Alignment'), findsOneWidget);
 
-    // Verify the stretch label (the last cross-axis demo) is present.
-    expect(find.text('Stretch'), findsOneWidget);
+    // Verify the stretch labels (one per Row/Column section) are present.
+    expect(find.text('Stretch'), findsNWidgets(2));
   });
 }
