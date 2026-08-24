@@ -1,11 +1,18 @@
-# Flutter Activity 2
+# Flutter Activity 2 & 3
 
-A Flutter layout activity that demonstrates **Row Main Axis Alignment** and **Row Cross Axis Alignment** using colored containers.
+A Flutter layout activity that demonstrates **EdgeInsets (padding/insets)** as well as **Main Axis** and **Cross Axis** alignment for both `Row` and `Column` widgets using colored containers.
 
-Built with Flutter as an exploration of `Row` alignment properties such as:
+The app is organized into two tabs:
 
-- **Main Axis:** `start`, `center`, `end`, `spaceAround`, `spaceBetween`, `spaceEvenly`
-- **Cross Axis:** `start`, `center`, `stretch`
+- **Insets** — visual demos of padding with `EdgeInsets.all`, `EdgeInsets.symmetric`, `EdgeInsets.only`, and `EdgeInsets.fromLTRB`
+- **Alignments** — scrollable, full-screen examples of layout alignment:
+
+  | Group                     | Values                                                        |
+  |---------------------------|---------------------------------------------------------------|
+  | Row Main Axis             | `start`, `center`, `end`, `spaceAround`, `spaceBetween`, `spaceEvenly` |
+  | Row Cross Axis            | `start`, `center`, `end`, `stretch`                           |
+  | Column Main Axis          | `start`, `center`, `end`, `spaceAround`, `spaceBetween`, `spaceEvenly` |
+  | Column Cross Axis         | `start`, `center`, `end`, `stretch`                           |
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.x-blue" alt="Flutter"/>
@@ -144,10 +151,10 @@ build/app/outputs/flutter-apk/app-release.apk
 
 ```
 lib/
-└── main.dart              # Main application code (all UI + layout demos)
+└── main.dart              # Main application code (tabs, insets & alignment demos)
 
 android/                   # Android platform configuration
-test/                      # Widget/unit tests
+test/                      # Widget/unit tests (widget_test.dart, stretch_test.dart)
 pubspec.yaml               # Project metadata and dependencies
 pubspec.lock               # Locked dependency versions
 analysis_options.yaml      # Lint rules configuration
@@ -181,10 +188,10 @@ flutter pub outdated
 
 ## Customization
 
-The app is built entirely in `lib/main.dart`. To experiment with the layout:
+The app is built entirely in `lib/main.dart`. It uses a `TabController` with two tabs (`InsetsTab` and `AlignmentsTab`). To experiment:
 
 1. Open `lib/main.dart`
-2. Modify the `mainAxisAlignment` or `crossAxisAlignment` values on the `Row` widgets
+2. Modify the `mainAxisAlignment` or `crossAxisAlignment` values on the `Row`/`Column` widgets in `AlignmentsTab`, or tweak the `EdgeInsets` values in `InsetsTab`
 3. Save and hot reload (press **`r`** in the running terminal, or `Shift + R` for a full restart)
 
 ```dart
@@ -192,6 +199,14 @@ Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween, // try other values
   crossAxisAlignment: CrossAxisAlignment.center,     // try start / stretch
   children: [...],
+)
+```
+
+```dart
+Container(
+  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10), // try other insets
+  color: Colors.yellow,
+  child: const Text("EdgeInsets.symmetric(...)"),
 )
 ```
 
