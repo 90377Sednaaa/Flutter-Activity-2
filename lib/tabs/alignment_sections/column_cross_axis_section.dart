@@ -13,51 +13,65 @@ class ColumnCrossAxisSection extends StatelessWidget {
       examples: [
         ExampleCard(
           label: "Start",
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(height: 100, width: 100, color: Colors.red),
-              Container(height: 90, width: 90, color: Colors.yellow),
-              Container(height: 80, width: 80, color: Colors.blue),
-            ],
+          // Fixed height so spaceEvenly distributes a small,
+          // readable amount of free space instead of a whole screen.
+          child: SizedBox(
+            height: 340,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(height: 100, width: 100, color: Colors.red),
+                Container(height: 90, width: 90, color: Colors.yellow),
+                Container(height: 80, width: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "End",
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(height: 100, width: 100, color: Colors.red),
-              Container(height: 90, width: 90, color: Colors.yellow),
-              Container(height: 80, width: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            height: 340,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(height: 100, width: 100, color: Colors.red),
+                Container(height: 90, width: 90, color: Colors.yellow),
+                Container(height: 80, width: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "Center",
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(height: 100, width: 100, color: Colors.red),
-              Container(height: 90, width: 90, color: Colors.yellow),
-              Container(height: 80, width: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            height: 340,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(height: 100, width: 100, color: Colors.red),
+                Container(height: 90, width: 90, color: Colors.yellow),
+                Container(height: 80, width: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "Stretch",
           // No widths so the boxes can stretch horizontally.
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(height: 100, color: Colors.red),
-              Container(height: 90, color: Colors.yellow),
-              Container(height: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            height: 340,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(height: 100, color: Colors.red),
+                Container(height: 90, color: Colors.yellow),
+                Container(height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
       ],

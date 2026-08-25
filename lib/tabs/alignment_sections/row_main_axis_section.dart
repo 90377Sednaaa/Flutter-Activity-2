@@ -13,68 +13,88 @@ class RowMainAxisSection extends StatelessWidget {
       examples: [
         ExampleCard(
           label: "Center",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 90, height: 90, color: Colors.yellow),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
+          // Fixed width so space* alignments distribute a small,
+          // readable amount of free space instead of the whole screen.
+          child: SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(width: 100, height: 100, color: Colors.red),
+                Container(width: 90, height: 90, color: Colors.yellow),
+                Container(width: 80, height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "Space Around",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 90, height: 90, color: Colors.yellow),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(width: 100, height: 100, color: Colors.red),
+                Container(width: 90, height: 90, color: Colors.yellow),
+                Container(width: 80, height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "Space Between",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 90, height: 90, color: Colors.yellow),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(width: 100, height: 100, color: Colors.red),
+                Container(width: 90, height: 90, color: Colors.yellow),
+                Container(width: 80, height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "Space Evenly",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 90, height: 90, color: Colors.yellow),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(width: 100, height: 100, color: Colors.red),
+                Container(width: 90, height: 90, color: Colors.yellow),
+                Container(width: 80, height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "Start",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 90, height: 90, color: Colors.yellow),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(width: 100, height: 100, color: Colors.red),
+                Container(width: 90, height: 90, color: Colors.yellow),
+                Container(width: 80, height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
         ExampleCard(
           label: "End",
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 90, height: 90, color: Colors.yellow),
-              Container(width: 80, height: 80, color: Colors.blue),
-            ],
+          child: SizedBox(
+            width: 340,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(width: 100, height: 100, color: Colors.red),
+                Container(width: 90, height: 90, color: Colors.yellow),
+                Container(width: 80, height: 80, color: Colors.blue),
+              ],
+            ),
           ),
         ),
       ],
