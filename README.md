@@ -1,24 +1,31 @@
 # Flutter Activity 2 & 3
 
-A Flutter layout activity that demonstrates **EdgeInsets (padding/insets)** as well as **Main Axis** and **Cross Axis** alignment for both `Row` and `Column` widgets using colored containers.
-
-The app is organized into two tabs:
-
-- **Insets** — visual demos of padding with `EdgeInsets.all`, `EdgeInsets.symmetric`, `EdgeInsets.only`, and `EdgeInsets.fromLTRB`
-- **Alignments** — scrollable, full-screen examples of layout alignment:
-
-  | Group                     | Values                                                        |
-  |---------------------------|---------------------------------------------------------------|
-  | Row Main Axis             | `start`, `center`, `end`, `spaceAround`, `spaceBetween`, `spaceEvenly` |
-  | Row Cross Axis            | `start`, `center`, `end`, `stretch`                           |
-  | Column Main Axis          | `start`, `center`, `end`, `spaceAround`, `spaceBetween`, `spaceEvenly` |
-  | Column Cross Axis         | `start`, `center`, `end`, `stretch`                           |
+A Flutter layout activity that demonstrates **EdgeInsets (padding/insets)** as well as **Main Axis**, **Cross Axis**, and **Baseline** alignment for `Row` and `Column` widgets using colored containers.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.x-blue" alt="Flutter"/>
   <img src="https://img.shields.io/badge/Dart-3.x-0175C2" alt="Dart"/>
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License"/>
 </p>
+
+---
+
+## App Overview
+
+The app is organized into two tabs:
+
+- **Insets** — visual demos of padding with `EdgeInsets.all`, `EdgeInsets.symmetric`, `EdgeInsets.only`, and `EdgeInsets.fromLTRB`
+- **Alignments** — a menu of buttons; tapping a button opens that alignment's **dedicated page**, where each example fills one screen and you **swipe horizontally** through them (with an app bar **back button** to return to the menu):
+
+  | Section                    | Values                                                                  |
+  |----------------------------|-------------------------------------------------------------------------|
+  | Row Main Axis              | `center`, `spaceAround`, `spaceBetween`, `spaceEvenly`, `start`, `end`   |
+  | Row Cross Axis             | `start`, `end`, `center`, `stretch`                                      |
+  | Row Baseline               | `CrossAxisAlignment.baseline` with `TextBaseline.alphabetic`             |
+  | Column Main Axis           | `center`, `spaceAround`, `spaceBetween`, `spaceEvenly`, `start`, `end`   |
+  | Column Cross Axis          | `start`, `end`, `center`, `stretch`                                      |
+
+> Note: baseline alignment only works on horizontal `Row`s — it throws on vertical `Column`s, which is why there is no column baseline section.
 
 ---
 
@@ -75,7 +82,7 @@ cd Flutter-Activity-2
 
 ### 2. Install dependencies
 
-The project uses the standard Flutter dependencies. Run the following command in the project root to fetch all packages:
+Run the following command in the project root to fetch all packages:
 
 ```bash
 flutter pub get
@@ -133,6 +140,8 @@ flutter run -d emulator-5554 # run in Android emulator
 flutter test
 ```
 
+The widget tests cover the home tabs, the alignment menu navigation (open a section page → back button), and verify that `CrossAxisAlignment.stretch` really stretches its children.
+
 ### Building a release APK (Android)
 
 ```bash
@@ -149,12 +158,28 @@ build/app/outputs/flutter-apk/app-release.apk
 
 ## Project Structure
 
+The codebase is modularized: one file per feature/widget, and **one file per alignment section**.
+
 ```
 lib/
-└── main.dart              # Main application code (tabs, insets & alignment demos)
+├── main.dart                          # Entry point + MaterialApp root
+├── screens/
+│   └── home_page.dart                 # AppBar + Insets/Alignments tab switching
+├── tabs/
+│   ├── insets_tab.dart                # EdgeInsets examples
+│   ├── alignments_tab.dart            # Alignment menu (buttons open dedicated pages)
+│   └── alignment_sections/
+│       ├── section_screen.dart        # Shared page shell: AppBar + back button + swipe PageView + dots
+│       ├── row_main_axis_section.dart
+│       ├── row_cross_axis_section.dart
+│       ├── row_baseline_section.dart
+│       ├── column_main_axis_section.dart
+│       └── column_cross_axis_section.dart
+└── widgets/
+    └── example_card.dart              # Shared bordered card (label + demo child)
 
 android/                   # Android platform configuration
-test/                      # Widget/unit tests (widget_test.dart, stretch_test.dart)
+test/                      # Widget tests (widget_test.dart, stretch_test.dart)
 pubspec.yaml               # Project metadata and dependencies
 pubspec.lock               # Locked dependency versions
 analysis_options.yaml      # Lint rules configuration
@@ -188,19 +213,27 @@ flutter pub outdated
 
 ## Customization
 
-The app is built entirely in `lib/main.dart`. It uses a `TabController` with two tabs (`InsetsTab` and `AlignmentsTab`). To experiment:
+Each alignment lives in its own file under `lib/tabs/alignment_sections/`. To experiment:
 
-1. Open `lib/main.dart`
-2. Modify the `mainAxisAlignment` or `crossAxisAlignment` values on the `Row`/`Column` widgets in `AlignmentsTab`, or tweak the `EdgeInsets` values in `InsetsTab`
-3. Save and hot reload (press **`r`** in the running terminal, or `Shift + R` for a full restart)
+1. Open any `*_section.dart` file
+2. Change the `mainAxisAlignment` or `crossAxisAlignment` value on its `Row`/`Column`, or tweak sizes/colors of the demo boxes
+3. Save and hot reload (press **`r`** in the running terminal)
 
 ```dart
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween, // try other values
-  crossAxisAlignment: CrossAxisAlignment.center,     // try start / stretch
-  children: [...],
+ExampleCard(
+  label: "Space Between",
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween, // try other values
+    children: [
+      Container(width: 100, height: 100, color: Colors.red),
+      Container(width: 90, height: 90, color: Colors.yellow),
+      Container(width: 80, height: 80, color: Colors.blue),
+    ],
+  ),
 )
 ```
+
+Insets demos live in `lib/tabs/insets_tab.dart`:
 
 ```dart
 Container(
@@ -209,6 +242,8 @@ Container(
   child: const Text("EdgeInsets.symmetric(...)"),
 )
 ```
+
+To add a brand-new alignment section, copy an existing `*_section.dart`, adjust it, and register it in the menu inside `lib/tabs/alignments_tab.dart`.
 
 ---
 
